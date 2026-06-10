@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Cognitas Labs — Clinical AI Demo</title>
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/responsive.css">
+</head>
+<body>
+  <div class="app" id="app">
+    <!-- Collapsible sidebar (hidden by default) -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">
+          <img src="assets/cognitas-logo.svg" alt="Cognitas Labs" class="logo">
+        </div>
+        <button class="sidebar-close" id="sidebarClose" aria-label="Close sidebar">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
+        </button>
+      </div>
+
+      <button class="sidebar-new-chat" id="sidebarNewChat">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+        <span data-i18n="nav.newChat">New Chat</span>
+      </button>
+
+      <div class="sidebar-sections">
+        <button class="sidebar-section" data-nav="history">
+          <span class="section-title" data-i18n="sidebar.qa">Q&amp;A</span>
+          <span class="section-empty" data-i18n="sidebar.noData">No data</span>
+        </button>
+        <button class="sidebar-section" data-nav="records">
+          <span class="section-title" data-i18n="sidebar.records">Records</span>
+          <span class="section-empty" data-i18n="sidebar.noData">No data</span>
+        </button>
+        <button class="sidebar-section" data-nav="patients">
+          <span class="section-title">
+            <span data-i18n="sidebar.patients">Patients</span>
+            <svg class="section-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+          </span>
+          <span class="section-empty" data-i18n="sidebar.noData">No data</span>
+        </button>
+        <button class="sidebar-section" data-nav="files">
+          <span class="section-title" data-i18n="sidebar.files">Files</span>
+          <span class="section-empty" data-i18n="sidebar.noData">No data</span>
+        </button>
+      </div>
+
+      <div class="sidebar-user">
+        <div class="user-avatar">D</div>
+        <div class="user-info">
+          <div class="user-name">Doctor 5445</div>
+          <div class="user-role" data-i18n="sidebar.personal">Personal User</div>
+        </div>
+        <span class="user-badge" data-i18n="app.demo">Demo</span>
+      </div>
+
+      <button class="lang-toggle" id="langToggle" title="Switch language">EN / ID</button>
+    </aside>
+
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+    <!-- Main content -->
+    <div class="main-wrap">
+      <header class="page-header">
+        <div class="header-left">
+          <button class="icon-btn" id="sidebarToggle" aria-label="Toggle sidebar">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
+          </button>
+          <button class="icon-btn" id="newChatBtn" aria-label="New chat">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+          </button>
+        </div>
+        <div class="header-right">
+          <button class="app-download-btn" id="appDownloadBtn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span data-i18n="header.downloadApp">Download Mobile App</span>
+            <svg class="chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="app-dropdown" id="appDropdown" hidden>
+            <a href="#" class="dropdown-item">iOS</a>
+            <a href="#" class="dropdown-item">Android</a>
+          </div>
+        </div>
+      </header>
+
+      <main class="canvas" id="canvas">
+        <section class="view view-home active" id="viewHome">
+          <div class="hero" id="hero">
+            <div class="hero-intro" id="heroIntro">
+              <h1 class="greeting" data-i18n="home.greeting">Hi, Doctor 5445</h1>
+              <p class="subtitle" data-i18n="home.subtitle">I'm your doctor's assistant — medical records, clinical Q&amp;A, and literature search, all in one place.</p>
+            </div>
+
+            <div class="chat-thread" id="chatThread"></div>
+
+            <div class="composer-wrap" id="composerWrap">
+              <div class="input-wrapper">
+                <div class="input-box" id="inputBox">
+                  <textarea class="input-field" id="inputField" placeholder="Ask me anything..." rows="1" data-i18n-placeholder="home.placeholder"></textarea>
+                  <div class="input-toolbar">
+                    <div class="input-toolbar-left">
+                      <button class="attach-btn" id="attachBtn" aria-label="Attach file">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+                      </button>
+                      <button class="toolbar-chip" id="composerAiWriting" type="button">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+                        <span data-i18n="tag.aiWriting">AI Writing</span>
+                      </button>
+                      <button class="toolbar-chip" id="composerMore" type="button">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                        <span data-i18n="composer.more">More</span>
+                      </button>
+                    </div>
+                    <div class="input-toolbar-right">
+                      <button class="send-btn" id="sendBtn" aria-label="Send" disabled>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+                      </button>
+                      <button class="stop-btn is-hidden" id="stopBtn" aria-label="Stop">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12" rx="1"/></svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <input type="file" id="fileInput" hidden multiple>
+              </div>
+
+              <div class="tags" id="tags">
+                <button class="tag" data-action="ambient-outpatient" data-i18n="tag.aiWriting">AI Writing</button>
+                <button class="tag" data-action="risk-warning" data-i18n="tag.clinical">Clinical Assistant</button>
+                <button class="tag" data-action="insurance-coding" data-i18n="tag.insurance">Insurance Assistant</button>
+                <button class="tag" data-action="learning" data-i18n="tag.learning">Learning Assistant</button>
+                <button class="tag" data-action="quality" data-i18n="tag.quality">Quality Control</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="view view-records" id="viewRecords">
+          <h2 data-i18n="records.title">Medical Records</h2>
+          <div class="records-list" id="recordsList"></div>
+          <p class="empty-hint" id="recordsEmpty" data-i18n="records.empty">No confirmed records yet.</p>
+        </section>
+
+        <section class="view view-history" id="viewHistory">
+          <h2 data-i18n="history.title">Session History</h2>
+          <ul class="history-list" id="historyList">
+            <li data-i18n="history.item1">Prolanis follow-up — Ambient capture</li>
+            <li data-i18n="history.item2">Insurance coding — Prolanis Note</li>
+            <li data-i18n="history.item3">CDSS — Geriatric polypharmacy review</li>
+          </ul>
+        </section>
+
+        <section class="view view-patients" id="viewPatients">
+          <h2 data-i18n="patients.title">Patients</h2>
+          <div class="patient-cards">
+            <div class="patient-card"><div class="patient-name">Tn. AS</div><div class="patient-meta">58 y/o · Male</div><div class="patient-dx">E11.9 · I10</div></div>
+            <div class="patient-card"><div class="patient-name">Ny. KW</div><div class="patient-meta">72 y/o · Female</div><div class="patient-dx">E11.22 · N18.3</div></div>
+            <div class="patient-card"><div class="patient-name">Tn. BP</div><div class="patient-meta">52 y/o · Male</div><div class="patient-dx">A15.0 · E11.9</div></div>
+          </div>
+        </section>
+
+        <section class="view view-files" id="viewFiles">
+          <h2 data-i18n="files.title">Files</h2>
+          <ul class="files-list">
+            <li>prolanis-transcript.json</li>
+            <li>prolanis-soap.json</li>
+            <li>prolanis-coding.json</li>
+            <li>geriatric-cdss.json</li>
+          </ul>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- Ambient AI -->
+  <div class="overlay" id="ambientOverlay" hidden>
+    <div class="overlay-topbar">
+      <button class="btn-text" id="ambientBack" data-i18n="common.back">← Back</button>
+      <span class="overlay-title" data-i18n="ambient.title">Ambient AI — Outpatient Record</span>
+      <div class="overlay-actions">
+        <button class="btn-ghost" id="ambientCancel" data-i18n="common.cancel">Cancel</button>
+        <button class="btn-primary" id="ambientConfirm" disabled data-i18n="common.confirm">Confirm</button>
+      </div>
+    </div>
+    <div class="ambient-body">
+      <div class="ambient-panel"><h3 data-i18n="ambient.transcript">Live Transcription</h3><div class="transcript-feed" id="transcriptFeed"></div></div>
+      <div class="ambient-panel"><h3 data-i18n="ambient.note">Outpatient Note</h3><div class="note-header" id="noteHeader"></div><div class="note-feed" id="noteFeed"></div>
+        <div class="satu-sehat-badge" id="satuSehatBadge" hidden><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Sent to SatuSehat</div>
+      </div>
+    </div>
+    <div class="ambient-controls">
+      <canvas class="waveform" id="waveform" width="600" height="48"></canvas>
+      <div class="timer" id="ambientTimer">00:00</div>
+      <button class="btn-mic" id="ambientMic" aria-label="Start"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg></button>
+      <button class="btn-stop" id="ambientStop" disabled aria-label="Stop"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12" rx="1"/></svg></button>
+    </div>
+  </div>
+
+  <!-- Insurance modal -->
+  <div class="modal" id="insuranceModal" hidden>
+    <div class="modal-card modal-lg">
+      <div class="modal-header"><h3 data-i18n="insurance.modalTitle">Select Record</h3><button class="modal-close" data-close="insuranceModal">&times;</button></div>
+      <div class="modal-body">
+        <label class="record-option"><input type="radio" name="insuranceRecord" value="prolanis-coding" checked><div><strong>Prolanis Note</strong><span>T2DM + Hypertension</span></div></label>
+        <label class="record-option"><input type="radio" name="insuranceRecord" value="tb-discharge-coding"><div><strong>TB Discharge</strong><span>Pulmonary TB</span></div></label>
+      </div>
+      <div class="modal-footer"><button class="btn-ghost" data-close="insuranceModal" data-i18n="common.cancel">Cancel</button><button class="btn-primary" id="insuranceStart" data-i18n="insurance.start">Start Analysis</button></div>
+    </div>
+  </div>
+
+  <div class="overlay" id="insuranceReportOverlay" hidden>
+    <div class="overlay-topbar"><button class="btn-text" id="insuranceReportBack" data-i18n="common.back">← Back</button><span class="overlay-title" data-i18n="insurance.reportTitle">Insurance Coding Report</span><div></div></div>
+    <div class="report-body">
+      <div class="analysis-steps" id="analysisSteps">
+        <div class="step" data-step="0"><span class="step-dot"></span><span data-i18n="insurance.step1">Parsing record…</span></div>
+        <div class="step" data-step="1"><span class="step-dot"></span><span data-i18n="insurance.step2">Identifying key information…</span></div>
+        <div class="step" data-step="2"><span class="step-dot"></span><span data-i18n="insurance.step3">Checking coding standards…</span></div>
+      </div>
+      <div class="report-content" id="insuranceReportContent" hidden></div>
+    </div>
+  </div>
+
+  <!-- CDSS modal -->
+  <div class="modal" id="cdssModal" hidden>
+    <div class="modal-card modal-lg">
+      <div class="modal-header"><h3 data-i18n="cdss.modalTitle">Select Patient</h3><button class="modal-close" data-close="cdssModal">&times;</button></div>
+      <div class="modal-body">
+        <label class="record-option"><input type="radio" name="cdssPatient" value="prolanis-cdss" checked><div><strong>Tn. AS — Prolanis</strong><span>Advisory alerts</span></div></label>
+        <label class="record-option"><input type="radio" name="cdssPatient" value="geriatric-cdss"><div><strong>Ny. KW — Geriatric</strong><span>Severe alerts</span></div></label>
+      </div>
+      <div class="modal-footer"><button class="btn-ghost" data-close="cdssModal" data-i18n="common.cancel">Cancel</button><button class="btn-primary" id="cdssStart" data-i18n="cdss.start">Run Analysis</button></div>
+    </div>
+  </div>
+
+  <div class="overlay" id="cdssReportOverlay" hidden>
+    <div class="overlay-topbar"><button class="btn-text" id="cdssReportBack" data-i18n="common.back">← Back</button><span class="overlay-title" data-i18n="cdss.reportTitle">Clinical Decision Support</span><div></div></div>
+    <div class="report-body cdss-body">
+      <div class="cdss-search" id="cdssSearch"><div class="search-spinner"></div><p data-i18n="cdss.searching">Searching medical databases…</p><div class="db-tags" id="cdssDbTags"></div></div>
+      <div class="cdss-content" id="cdssContent" hidden>
+        <div class="severity-banner" id="cdssSeverity"></div>
+        <div class="cdss-stream" id="cdssStream"></div>
+        <div class="cdss-references" id="cdssReferences"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/content-bundle.js"></script>
+  <script src="js/content-loader.js"></script>
+  <script src="js/player.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
