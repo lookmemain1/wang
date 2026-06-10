@@ -1,0 +1,481 @@
+/* ==========================================================================
+   Responsive — Mobile · Tablet · Desktop
+   Breakpoints:
+     xs  < 480px   phone portrait
+     sm  480–767   phone landscape / small phone
+     md  768–1023  tablet portrait
+     lg  1024–1439 tablet landscape / laptop (demo primary)
+     xl  ≥ 1440    large desktop
+   ========================================================================== */
+
+/* ── Base safe-area (notched devices) ── */
+.page-header {
+  padding-left: max(16px, env(safe-area-inset-left));
+  padding-right: max(16px, env(safe-area-inset-right));
+}
+
+.canvas {
+  padding-left: max(16px, env(safe-area-inset-left));
+  padding-right: max(16px, env(safe-area-inset-right));
+}
+
+.hero.chat-active .composer-wrap {
+  padding-bottom: max(12px, env(safe-area-inset-bottom));
+}
+
+.overlay-topbar,
+.ambient-controls {
+  padding-left: max(16px, env(safe-area-inset-left));
+  padding-right: max(16px, env(safe-area-inset-right));
+}
+
+.ambient-controls {
+  padding-bottom: max(16px, env(safe-area-inset-bottom));
+}
+
+/* Tablet & below: sidebar overlays, never pushes layout */
+@media (max-width: 1023px) {
+  .app.sidebar-open .main-wrap {
+    margin-left: 0;
+  }
+
+  .sidebar {
+    width: min(var(--sidebar-w), 88vw);
+  }
+}
+
+/* ── Phone (xs + sm) ── */
+@media (max-width: 767px) {
+  :root {
+    --header-h: 52px;
+    --sidebar-w: 280px;
+  }
+
+  .page-header {
+    padding-left: max(12px, env(safe-area-inset-left));
+    padding-right: max(12px, env(safe-area-inset-right));
+  }
+
+  .canvas {
+    padding: 0 max(12px, env(safe-area-inset-right)) max(16px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+  }
+
+  /* Header */
+  .icon-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .app-download-btn {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+
+  .app-download-btn span,
+  .app-download-btn .chevron {
+    display: none;
+  }
+
+  /* Home hero */
+  .hero {
+    padding-top: 6vh;
+    min-height: calc(100dvh - var(--header-h) - 24px);
+  }
+
+  .hero.chat-active {
+    padding-top: 8px;
+    min-height: calc(100dvh - var(--header-h));
+  }
+
+  .greeting {
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+    margin-bottom: 24px;
+    padding: 0 4px;
+  }
+
+  /* Input & tags */
+  .input-box {
+    padding: 12px 14px 10px;
+    border-radius: 14px;
+  }
+
+  .input-field {
+    font-size: 16px; /* prevent iOS zoom on focus */
+  }
+
+  .tags {
+    gap: 8px;
+    margin-top: 14px;
+  }
+
+  .tag {
+    font-size: 12px;
+    padding: 7px 12px;
+  }
+
+  .toolbar-chip {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+
+  .toolbar-chip span {
+    max-width: 72px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* Chat */
+  .msg-bubble-user {
+    max-width: 88%;
+    font-size: 14px;
+  }
+
+  .msg-assistant .reply-text {
+    font-size: 14px;
+  }
+
+  /* Secondary views */
+  .view h2 {
+    font-size: 18px;
+  }
+
+  .patient-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .patient-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Ambient AI — stacked panels */
+  .ambient-body {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+
+  .ambient-panel {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    min-height: 0;
+  }
+
+  .ambient-panel:last-child {
+    border-bottom: none;
+  }
+
+  .overlay-topbar {
+    height: auto;
+    min-height: 52px;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .overlay-title {
+    order: 3;
+    width: 100%;
+    text-align: center;
+    font-size: 13px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .overlay-actions {
+    gap: 6px;
+  }
+
+  .overlay-actions .btn-ghost,
+  .overlay-actions .btn-primary {
+    padding: 7px 12px;
+    font-size: 12px;
+  }
+
+  .ambient-controls {
+    gap: 12px;
+    flex-wrap: wrap;
+    padding-top: 12px;
+  }
+
+  .waveform {
+    width: 100%;
+    max-width: 160px;
+    order: 3;
+  }
+
+  .timer {
+    font-size: 18px;
+  }
+
+  /* Modals — bottom sheet style */
+  .modal {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .modal-card {
+    max-width: 100%;
+    border-radius: 16px 16px 0 0;
+    max-height: 85dvh;
+    overflow-y: auto;
+  }
+
+  .modal-lg {
+    max-width: 100%;
+  }
+
+  /* Reports */
+  .report-body {
+    padding: 16px max(12px, env(safe-area-inset-right)) 24px max(12px, env(safe-area-inset-left));
+  }
+
+  .report-content {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .coding-table {
+    font-size: 12px;
+    min-width: 520px;
+  }
+
+  .coding-table th,
+  .coding-table td {
+    padding: 8px 10px;
+  }
+
+  .report-header h2 {
+    font-size: 18px;
+  }
+
+  .cdss-content {
+    padding: 16px max(12px, env(safe-area-inset-right)) 24px max(12px, env(safe-area-inset-left));
+  }
+
+  .cdss-search {
+    min-height: 200px;
+    padding: 24px 16px;
+  }
+
+  .alert-card {
+    padding: 12px;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 374px) {
+  .greeting {
+    font-size: 22px;
+  }
+
+  .tags {
+    justify-content: flex-start;
+  }
+
+  .tag {
+    font-size: 11px;
+    padding: 6px 10px;
+  }
+}
+
+/* ── Tablet portrait (md) ── */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .canvas {
+    padding: 0 28px 32px;
+  }
+
+  .hero {
+    max-width: 640px;
+    padding-top: 10vh;
+  }
+
+  .hero.chat-active {
+    max-width: 680px;
+  }
+
+  .greeting {
+    font-size: 28px;
+  }
+
+  .subtitle {
+    font-size: 15px;
+  }
+
+  /* Ambient: side-by-side on tablet */
+  .ambient-body {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ambient-panel {
+    border-bottom: none;
+  }
+
+  .patient-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .patient-info-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .modal-card {
+    max-width: 560px;
+  }
+
+  .report-body {
+    padding: 24px 28px;
+  }
+
+  .cdss-content {
+    padding: 20px 28px;
+  }
+}
+
+/* ── Tablet landscape / laptop (lg) — primary demo target ── */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .canvas {
+    padding: 0 32px 40px;
+  }
+
+  .hero {
+    max-width: 720px;
+    padding-top: 8vh;
+  }
+
+  .hero.chat-active {
+    max-width: 760px;
+  }
+
+  .greeting {
+    font-size: 30px;
+  }
+
+  /* Sidebar pushes content on desktop */
+  .app.sidebar-open .main-wrap {
+    margin-left: var(--sidebar-w);
+  }
+
+  .patient-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ── Large desktop (xl) ── */
+@media (min-width: 1440px) {
+  .hero {
+    max-width: 800px;
+    padding-top: 10vh;
+  }
+
+  .hero.chat-active {
+    max-width: 880px;
+  }
+
+  .greeting {
+    font-size: 34px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+  }
+
+  .report-content,
+  .cdss-content {
+    max-width: 960px;
+  }
+
+  .patient-cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .modal-lg {
+    max-width: 580px;
+  }
+}
+
+/* ── Short landscape (phones rotated) ── */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero {
+    padding-top: 16px;
+    min-height: auto;
+  }
+
+  .hero:not(.chat-active) .greeting {
+    font-size: 22px;
+    margin-bottom: 4px;
+  }
+
+  .hero:not(.chat-active) .subtitle {
+    margin-bottom: 12px;
+    font-size: 13px;
+  }
+
+  .tags {
+    margin-top: 10px;
+  }
+
+  .ambient-body {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: none;
+  }
+
+  .ambient-panel {
+    max-height: none;
+  }
+}
+
+/* ── Touch devices: larger tap targets ── */
+@media (hover: none) and (pointer: coarse) {
+  .icon-btn,
+  .attach-btn,
+  .send-btn,
+  .stop-btn {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .tag,
+  .sidebar-section,
+  .sidebar-new-chat {
+    min-height: 44px;
+  }
+
+  .btn-mic {
+    width: 56px;
+    height: 56px;
+  }
+
+  .btn-stop {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+/* ── Print (reports) ── */
+@media print {
+  .sidebar,
+  .sidebar-backdrop,
+  .page-header,
+  .tags,
+  .composer-wrap,
+  .overlay-topbar,
+  .ambient-controls {
+    display: none !important;
+  }
+
+  .overlay {
+    position: static;
+    display: block !important;
+  }
+
+  .ambient-body {
+    grid-template-columns: 1fr;
+  }
+}

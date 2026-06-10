@@ -1,0 +1,60 @@
+{
+  "id": "prolanis-coding",
+  "recordId": "prolanis-note",
+  "title": "Prolanis Note",
+  "subtitle": "T2DM + Hypertension — Outpatient Consultation",
+  "patient": {
+    "name": "Tn. AS",
+    "mrn": "RM-2026-0034812",
+    "age": 58,
+    "sex": "Male",
+    "bpjs": "Active, Class 2"
+  },
+  "physicianDiagnoses": [
+    { "rank": 1, "text": "Diabetes Mellitus type 2, uncontrolled", "icd10": null },
+    { "rank": 2, "text": "Hypertension grade 1, uncontrolled", "icd10": null },
+    { "rank": 3, "text": "Mixed dyslipidemia", "icd10": null },
+    { "rank": 4, "text": "Overweight", "icd10": null }
+  ],
+  "aiDiagnoses": [
+    {
+      "rank": 1,
+      "type": "primary",
+      "text": "Type 2 diabetes mellitus without complications",
+      "icd10": "E11.9",
+      "evidence": "HbA1c 7.4% (target <7.0), GDP 142 mg/dL, GD2PP 198 mg/dL — uncontrolled glycaemia documented in today's labs and assessment."
+    },
+    {
+      "rank": 2,
+      "type": "secondary",
+      "text": "Essential (primary) hypertension",
+      "icd10": "I10",
+      "evidence": "BP 148/92 mmHg, elevated from 138/88 last month; on Amlodipine + Captopril; addressed in today's plan."
+    },
+    {
+      "rank": 3,
+      "type": "secondary",
+      "text": "Mixed hyperlipidaemia",
+      "icd10": "E78.2",
+      "evidence": "LDL 132 mg/dL on lipid profile; Simvastatin 20 mg continued in prescription."
+    },
+    {
+      "rank": 4,
+      "type": "secondary",
+      "text": "Overweight",
+      "icd10": "E66.3",
+      "evidence": "BMI 27.6 (78 kg / 168 cm); weight management discussed in plan."
+    },
+    {
+      "rank": 5,
+      "type": "candidate",
+      "text": "Type 2 DM with diabetic nephropathy",
+      "icd10": "E11.21",
+      "evidence": "Urinalysis protein +1 (microalbuminuria). UACR not yet quantified — upgrade to E11.21 if UACR ≥30 mg/g confirmed at next visit. Would shift INA-CBG grouping.",
+      "flag": "Candidate upgrade — pending UACR confirmation"
+    }
+  ],
+  "procedures": [],
+  "claimType": "Prolanis FKTP capitation (non-claimable per-visit)",
+  "inaCbgNote": "Primary E11.9 selected because DKD not yet confirmed (dipstick only, no UACR)."
+}

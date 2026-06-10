@@ -1,0 +1,67 @@
+{
+  "id": "prolanis-soap",
+  "title": "Outpatient Note — Prolanis Follow-up",
+  "patient": {
+    "name": "Tn. AS",
+    "mrn": "RM-2026-0034812",
+    "age": 58,
+    "sex": "Male",
+    "facility": "Klinik Platinum Alfa (FKTP)",
+    "visitDate": "10 June 2026",
+    "visitType": "Outpatient — Prolanis Monthly Control"
+  },
+  "soapDelayMs": 3000,
+  "sections": [
+    {
+      "key": "S",
+      "title": "SUBJECTIVE",
+      "delayMs": 0,
+      "blocks": [
+        { "label": "Chief complaint", "text": "Pusing saat bangun pagi/dari duduk, 1 minggu", "delayMs": 400 },
+        { "label": "HPI", "text": "Vertigo-like dizziness on position change. No palpitation, dyspnea, chest pain, nausea, tinnitus, or pre-syncope. Polydipsia-polyuria improved since on OAD.", "delayMs": 600 },
+        { "label": "Compliance", "text": "Good — almost no missed doses (self-reported)", "delayMs": 400 },
+        { "label": "Diet", "text": "Partially adherent; episodic excess white rice at family events", "delayMs": 400 },
+        { "label": "Exercise", "text": "Walking 3×/week × 30 min ≈ 90 min/wk (Prolanis target 150 min not yet met)", "delayMs": 500 }
+      ]
+    },
+    {
+      "key": "O",
+      "title": "OBJECTIVE",
+      "delayMs": 800,
+      "blocks": [
+        { "label": "BP", "text": "148/92 mmHg (↑ from 138/88 last month)", "delayMs": 400 },
+        { "label": "HR", "text": "84/min, regular", "delayMs": 300 },
+        { "label": "Weight / Height / BMI", "text": "78 kg / 168 cm / BMI 27.6 (overweight)", "delayMs": 400 },
+        { "label": "Cardiovascular", "text": "S1 S2 regular, no murmur", "delayMs": 300 },
+        { "label": "Pulmonary", "text": "Vesicular breath sounds, ronchi (−/−)", "delayMs": 300 },
+        { "label": "Abdomen", "text": "Soft, non-tender, liver/spleen not palpable", "delayMs": 300 },
+        { "label": "Diabetic foot exam", "text": "10g monofilament intact (no neuropathy); warm extremities, dorsalis pedis pulse intact, no ulcer", "delayMs": 500 },
+        { "label": "Labs (today)", "text": "GDP 142 mg/dL | GD2PP 198 mg/dL | HbA1c 7.4% (↑ from 7.1%) | LDL 132 mg/dL | Creatinine 1.0 mg/dL | eGFR 78 mL/min/1.73m² | Urinalysis: Protein +1 (microalbuminuria, UACR pending)", "delayMs": 700 }
+      ]
+    },
+    {
+      "key": "A",
+      "title": "ASSESSMENT",
+      "delayMs": 600,
+      "blocks": [
+        { "label": "1", "text": "T2DM, uncontrolled (HbA1c rising) — ICD-10: E11.9", "delayMs": 400 },
+        { "label": "2", "text": "Hypertension grade 1, uncontrolled — ICD-10: I10", "delayMs": 400 },
+        { "label": "3", "text": "Mixed dyslipidemia — ICD-10: E78.2", "delayMs": 300 },
+        { "label": "4", "text": "Overweight — ICD-10: E66.3", "delayMs": 300 },
+        { "label": "5", "text": "Suspected early diabetic nephropathy (microalbuminuria, eGFR preserved) — ICD-10: E11.21 (candidate, pending UACR)", "delayMs": 500 },
+        { "label": "6", "text": "Probable orthostatic hypotension (dizziness on standing, on multi-antihypertensive regimen) — ICD-10: I95.1", "delayMs": 500 }
+      ]
+    },
+    {
+      "key": "P",
+      "title": "PLAN",
+      "delayMs": 600,
+      "blocks": [
+        { "label": "Pharmacology (continue)", "text": "Metformin 500 mg PO TID after meals | Glimepiride 2 mg PO OD AM before meal | Amlodipine 5 mg PO OD AM | Captopril 25 mg PO BID before meals | Simvastatin 20 mg PO OD PM | Aspirin 80 mg PO OD", "delayMs": 600 },
+        { "label": "Conditional change", "text": "Captopril 25 mg BID → Lisinopril 10 mg OD if BP remains uncontrolled next visit", "delayMs": 400 },
+        { "label": "Non-pharmacological", "text": "Slow rise from supine/seated (count 30s) | Fluid intake 1.5 L/day | DM diet 1700 kcal/day, increase vegetables and lean protein | Home BP monitoring AM + PM × 1 week", "delayMs": 500 },
+        { "label": "Follow-up", "text": "Next visit: 1 month (Prolanis) | Repeat: HbA1c, lipid panel, UACR | Patient brings home BP log and medication log", "delayMs": 500 }
+      ]
+    }
+  ]
+}

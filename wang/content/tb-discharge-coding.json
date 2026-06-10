@@ -1,0 +1,60 @@
+{
+  "id": "tb-discharge-coding",
+  "recordId": "tb-discharge",
+  "title": "TB Discharge Summary",
+  "subtitle": "Pulmonary TB — Inpatient Discharge",
+  "patient": {
+    "name": "Tn. BP",
+    "mrn": "RM-2026-0012847",
+    "age": 52,
+    "sex": "Male",
+    "bpjs": "Active, Class 2"
+  },
+  "physicianDiagnoses": [
+    { "rank": 1, "text": "TB Paru Kasus Baru, BTA (+/+/+), klinis sedang", "icd10": null },
+    { "rank": 2, "text": "Diabetes Mellitus type 2, newly diagnosed", "icd10": null },
+    { "rank": 3, "text": "Mild normocytic normochromic anaemia", "icd10": null }
+  ],
+  "aiDiagnoses": [
+    {
+      "rank": 1,
+      "type": "primary",
+      "text": "Tuberculosis of lung, confirmed by sputum microscopy",
+      "icd10": "A15.0",
+      "evidence": "BTA sputum SPS +++/+++/++; GeneXpert MTB detected, Rifampicin sensitive; chest X-ray infiltrate patchy right upper lobe with fibrocavitation."
+    },
+    {
+      "rank": 2,
+      "type": "secondary",
+      "text": "Type 2 diabetes mellitus without complications",
+      "icd10": "E11.9",
+      "evidence": "GDP 168 mg/dL, HbA1c 8.2% on admission labs; Metformin 500 mg initiated during stay."
+    },
+    {
+      "rank": 3,
+      "type": "secondary",
+      "text": "Anaemia, unspecified",
+      "icd10": "D64.9",
+      "evidence": "Hb 10.2 g/dL on admission; Sulfas Ferrosus 300 mg prescribed at discharge."
+    }
+  ],
+  "procedures": [
+    {
+      "text": "Sputum BTA examination, 3 specimens",
+      "icd9": "87.42",
+      "evidence": "BTA sputum SPS performed ×3 during diagnostic workup (Section V, discharge summary)."
+    },
+    {
+      "text": "Chest X-ray PA",
+      "icd9": "87.44",
+      "evidence": "Foto thorax PA: infiltrate patchy right upper lobe, fibrocavitation (+)."
+    },
+    {
+      "text": "TB-DOTS education and PMO counselling",
+      "icd9": "89.07",
+      "evidence": "Edukasi TB-DOTS and PMO assignment to spouse documented in discharge plan (Section X)."
+    }
+  ],
+  "claimType": "INA-CBGs Group A-4-12-II (Moderate TB infection)",
+  "inaCbgNote": "A15.0 selected (sputum-confirmed) vs A15.1 (culture-confirmed) vs A15.2 (histologically-confirmed)."
+}

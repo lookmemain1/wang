@@ -1,0 +1,130 @@
+{
+  "id": "geriatric-cdss",
+  "recordId": "geriatric-polypharmacy",
+  "title": "Geriatric Polypharmacy Case",
+  "patient": {
+    "name": "Ny. KW",
+    "age": 72,
+    "sex": "Female",
+    "weight": "62 kg",
+    "bmi": 25.5,
+    "egfr": 48,
+    "comorbidities": "HT, T2DM, CKD stage 3a, right knee OA, BPH-like LUTS"
+  },
+  "medications": [
+    { "name": "Amlodipine 10 mg", "dose": "1× daily AM", "indication": "Hypertension" },
+    { "name": "Captopril 25 mg", "dose": "3× daily (a.c.)", "indication": "Hypertension + CKD" },
+    { "name": "Furosemide 40 mg", "dose": "1× daily AM", "indication": "Edema (historical)" },
+    { "name": "Metformin 500 mg", "dose": "2× daily", "indication": "T2DM" },
+    { "name": "Glibenclamide 5 mg", "dose": "1× daily AM (a.c.)", "indication": "T2DM" },
+    { "name": "Meloxicam 7.5 mg", "dose": "PRN", "indication": "Knee OA" },
+    { "name": "Tamsulosin 0.4 mg", "dose": "1× nightly", "indication": "LUTS (off-label, female)" },
+    { "name": "Aspirin 80 mg", "dose": "1× daily (OTC)", "indication": "Self-initiated" },
+    { "name": "Glucosamine + chondroitin", "dose": "1× daily (OTC)", "indication": "Joint health" }
+  ],
+  "searchDatabases": ["PubMed", "Lexicomp", "Micromedex", "Beers Criteria 2023", "Fornas DDI Reference"],
+  "severitySummary": "SEVERE — 3 hard alerts, 2 high alerts requiring immediate deprescribing review",
+  "streamBlocks": [
+    {
+      "type": "heading",
+      "text": "Clinical Decision Support — Drug Interaction & Deprescribing Analysis",
+      "delayMs": 500
+    },
+    {
+      "type": "summary",
+      "text": "72-year-old female with CKD stage 3a (eGFR 48), orthostatic hypotension (systolic drop 26 mmHg on standing), and 9 concurrent medications from 3 prescribers. Primary concern today: orthostatic dizziness × 2 weeks.",
+      "delayMs": 800
+    },
+    {
+      "type": "alert",
+      "severity": "severe",
+      "title": "DRP-1: Glibenclamide + eGFR 48 + age 72",
+      "text": "Long-acting sulfonylurea in elderly with reduced renal function — high risk of severe, prolonged hypoglycaemia.",
+      "mechanism": "Glibenclamide has active metabolites renally excreted; impaired clearance at eGFR <60 prolongs hypoglycaemic effect.",
+      "recommendation": "STOP Glibenclamide. Replace with Linagliptin 5 mg OD (no renal dose adjustment required).",
+      "reference": "Beers Criteria 2023 — avoid long-acting sulfonylureas in adults ≥65.",
+      "delayMs": 1000
+    },
+    {
+      "type": "alert",
+      "severity": "severe",
+      "title": "DRP-4: Triple Whammy — NSAID + ACE-I + Diuretic on CKD",
+      "text": "Meloxicam (NSAID) + Captopril (ACE-I) + Furosemide on eGFR 48 — severe AKI risk.",
+      "mechanism": "ACE-I reduces efferent arteriolar tone; diuretic causes volume depletion; NSAID blocks prostaglandin-mediated afferent vasodilation — combined effect sharply reduces GFR.",
+      "recommendation": "STOP Meloxicam. Replace with Paracetamol 500 mg PRN (max 3 g/day) + topical Diclofenac gel for knee.",
+      "reference": "Triple whammy AKI — well-documented in CKD populations (eGFR <60).",
+      "delayMs": 1000
+    },
+    {
+      "type": "alert",
+      "severity": "high",
+      "title": "DRP-5: Tamsulosin in female patient — off-label",
+      "text": "α1-blocker prescribed for LUTS in female — likely mis-prescribed; major contributor to orthostatic hypotension.",
+      "mechanism": "α1-adrenergic blockade causes vasodilation and postural BP drop, compounded by antihypertensives and diuretic.",
+      "recommendation": "STOP Tamsulosin pending urology verification. Observe orthostatic symptoms for 1 week.",
+      "reference": "Tamsulosin is indicated for BPH in males; off-label use in females requires specialist confirmation.",
+      "delayMs": 900
+    },
+    {
+      "type": "alert",
+      "severity": "high",
+      "title": "DRP-2: Furosemide without active indication",
+      "text": "Routine loop diuretic without current edema — contributes to volume depletion and orthostatic hypotension.",
+      "mechanism": "Volume depletion reduces preload; combined with antihypertensives and α-blocker worsens postural BP drop.",
+      "recommendation": "STOP or reduce to PRN only if edema recurs.",
+      "reference": "Orthostatic hypotension polypharmacy: ≥2 antihypertensives + α1-blocker + diuretic.",
+      "delayMs": 800
+    },
+    {
+      "type": "alert",
+      "severity": "moderate",
+      "title": "DRP-6: Aspirin without primary prevention indication",
+      "text": "Self-purchased aspirin in 72-year-old with no CV event history — bleeding risk outweighs benefit.",
+      "mechanism": "Primary prevention aspirin in elderly increases GI bleeding risk without proven CV benefit in this profile.",
+      "recommendation": "STOP aspirin. Educate patient on lack of indication.",
+      "reference": "ASPREE trial and current guidelines — avoid primary prevention aspirin in adults >70 without high CV risk.",
+      "delayMs": 700
+    },
+    {
+      "type": "alert",
+      "severity": "advisory",
+      "title": "DRP-3: Captopril TID dosing in elderly",
+      "text": "Short-acting ACE-I with suboptimal adherence in elderly — consider once-daily alternative.",
+      "mechanism": "TID dosing reduces compliance; trough BP control may be inadequate.",
+      "recommendation": "Switch Captopril 25 mg TID → Lisinopril 10 mg OD.",
+      "reference": "Fornas preference for once-daily antihypertensives in chronic disease management.",
+      "delayMs": 600
+    },
+    {
+      "type": "heading",
+      "text": "Recommended Regimen After Deprescribing (9 → 4 core drugs)",
+      "delayMs": 500
+    },
+    {
+      "type": "list",
+      "items": [
+        "Amlodipine 5 mg — 1× daily AM (reduced from 10 mg)",
+        "Lisinopril 10 mg — 1× daily AM (replaces Captopril)",
+        "Metformin 500 mg — 2× daily (continue)",
+        "Linagliptin 5 mg — 1× daily (replaces Glibenclamide)",
+        "Paracetamol 500 mg PRN — max 3 g/day (replaces Meloxicam)",
+        "Topical Diclofenac gel — PRN for knee"
+      ],
+      "delayMs": 800
+    }
+  ],
+  "references": [
+    {
+      "title": "Beers Criteria 2023 — American Geriatrics Society",
+      "detail": "Avoid long-acting sulfonylureas (Glibenclamide) in adults ≥65 with CKD."
+    },
+    {
+      "title": "Triple Whammy AKI — Nephrology literature review",
+      "detail": "ACE-I/ARB + diuretic + NSAID combination in CKD stage 3+ — incidence and prevention."
+    },
+    {
+      "title": "Fornas 2024 — Formularium Nasional",
+      "detail": "Linagliptin, Lisinopril dosing guidance for Indonesian BPJS facilities."
+    }
+  ]
+}

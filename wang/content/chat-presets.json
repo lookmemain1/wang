@@ -1,0 +1,43 @@
+{
+  "analysisDelayMs": 2200,
+  "streamCharDelayMs": 16,
+  "presets": [
+    {
+      "id": "greeting",
+      "match": ["hello", "hi", "hey", "halo", "good morning", "good afternoon"],
+      "matchType": "includes",
+      "reply": "Hello! I'm your clinical AI assistant, focused on medical record documentation, clinical Q&A, and literature search. How can I help with your medical questions today?"
+    },
+    {
+      "id": "prolanis",
+      "match": ["prolanis", "diabetes", "hba1c", "t2dm", "blood pressure", "hypertension"],
+      "matchType": "includes",
+      "reply": "For the Prolanis follow-up case (Tn. AS, 58 y/o): today's labs show HbA1c 7.4% (rising from 7.1%), BP 148/92 mmHg, and urinalysis protein +1 suggesting early DKD. Primary coding: E11.9 with candidate upgrade to E11.21 pending UACR. Would you like to open Ambient AI for live note capture, or run Insurance Coding?"
+    },
+    {
+      "id": "insurance",
+      "match": ["insurance", "coding", "icd", "icd-10", "bpjs", "ina-cbg", "claim"],
+      "matchType": "includes",
+      "reply": "I can generate an INA-CBG / BPJS coding report from a clinical record. Available presets: Prolanis Note (E11.9 + I10 + E78.2 + E66.3) and TB Discharge (A15.0 + E11.9 + D64.9 with ICD-9-CM procedures). Click Insurance Assistant below or type \"run insurance coding\" to start."
+    },
+    {
+      "id": "drug",
+      "match": ["drug", "medication", "interaction", "prescription", "polypharmacy", "cdss", "ddi"],
+      "matchType": "includes",
+      "reply": "I can run a Clinical Decision Support review for drug interactions. The geriatric case (Ny. KW, 72 y/o, 9 medications) flags severe alerts: Glibenclamide + eGFR 48 (Beers Criteria), triple whammy NSAID+ACE-I+diuretic, and off-label Tamsulosin. Click Clinical Assistant to run the full analysis."
+    },
+    {
+      "id": "ambient",
+      "match": ["ambient", "transcription", "soap", "outpatient record", "write record", "ai writing"],
+      "matchType": "includes",
+      "reply": "Ambient AI can capture the Prolanis consultation live — mixed Bahasa/English transcription streams on the left while a structured SOAP note generates on the right. Click AI Writing to launch the outpatient record demo."
+    },
+    {
+      "id": "tb",
+      "match": ["tuberculosis", "tb", "discharge", "bta", "oat"],
+      "matchType": "includes",
+      "reply": "The TB discharge summary case includes primary diagnosis A15.0 (sputum-confirmed pulmonary TB), secondary E11.9 and D64.9, plus procedures 87.42, 87.44, and 89.07 for INA-CBGs Group A-4-12-II. Select TB Discharge in Insurance Coding to view the full report."
+    }
+  ],
+  "defaultReply": "I'm your Cognitas clinical AI assistant. I can help with ambient documentation (AI Writing), insurance coding (ICD-10 / ICD-9-CM), and clinical decision support for drug interactions. Try asking about Prolanis, insurance coding, or medication review — or use the quick-action tags below."
+}

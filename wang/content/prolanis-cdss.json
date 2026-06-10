@@ -1,0 +1,84 @@
+{
+  "id": "prolanis-cdss",
+  "recordId": "prolanis-note",
+  "title": "Prolanis Follow-up — Medication Review",
+  "patient": {
+    "name": "Tn. AS",
+    "age": 58,
+    "sex": "Male",
+    "egfr": 78,
+    "comorbidities": "T2DM, Hypertension, Dyslipidemia"
+  },
+  "medications": [
+    { "name": "Metformin 500 mg", "dose": "TID after meals", "indication": "T2DM" },
+    { "name": "Glimepiride 2 mg", "dose": "1× daily AM", "indication": "T2DM" },
+    { "name": "Amlodipine 5 mg", "dose": "1× daily AM", "indication": "Hypertension" },
+    { "name": "Captopril 25 mg", "dose": "BID before meals", "indication": "Hypertension" },
+    { "name": "Simvastatin 20 mg", "dose": "1× nightly", "indication": "Dyslipidemia" },
+    { "name": "Aspirin 80 mg", "dose": "1× daily", "indication": "Cardioprotection" }
+  ],
+  "searchDatabases": ["PubMed", "Lexicomp", "Micromedex", "FDA Drug Safety", "Fornas DDI Reference"],
+  "severitySummary": "ADVISORY — 2 monitored interactions, no blocking alerts",
+  "streamBlocks": [
+    {
+      "type": "heading",
+      "text": "Clinical Decision Support — Medication Interaction Analysis",
+      "delayMs": 500
+    },
+    {
+      "type": "summary",
+      "text": "58-year-old male on 6 medications for Prolanis (T2DM + HTN). eGFR 78 mL/min — renal function adequate. New complaint: orthostatic dizziness × 1 week.",
+      "delayMs": 700
+    },
+    {
+      "type": "alert",
+      "severity": "advisory",
+      "title": "Captopril + Aspirin",
+      "text": "Theoretical reduced ACE-I efficacy; renal vasoconstriction risk in dehydration.",
+      "mechanism": "Aspirin may attenuate ACE-I mediated prostaglandin synthesis; clinically modest at low-dose aspirin.",
+      "recommendation": "Monitor BP and renal function. Ensure adequate hydration (1.5 L/day as advised). No change required today.",
+      "reference": "Advisory level — not blocking. Common co-prescription in cardiovascular risk patients.",
+      "delayMs": 800
+    },
+    {
+      "type": "alert",
+      "severity": "monitored",
+      "title": "Simvastatin 20 mg + Amlodipine 5 mg",
+      "text": "Current Simvastatin dose at FDA advisory ceiling when combined with Amlodipine.",
+      "mechanism": "Amlodipine inhibits CYP3A4, increasing Simvastatin exposure and myopathy risk at doses >20 mg.",
+      "recommendation": "Maintain Simvastatin at ≤20 mg (current dose acceptable). Monitor for myalgia. Do not increase Simvastatin dose.",
+      "reference": "FDA 2011 Drug Safety Communication — Simvastatin dose limit with Amlodipine.",
+      "delayMs": 800
+    },
+    {
+      "type": "alert",
+      "severity": "advisory",
+      "title": "Glimepiride in 58 y/o — monitor if eGFR declines",
+      "text": "Sulfonylurea acceptable at current eGFR 78; re-evaluate if eGFR falls below 60.",
+      "mechanism": "Reduced renal clearance of active metabolites increases hypoglycaemia risk as eGFR declines.",
+      "recommendation": "Continue current dose. Recheck eGFR at next Prolanis visit. Consider DPP-4 inhibitor if eGFR <60.",
+      "reference": "Beers Criteria — caution with sulfonylureas when eGFR <60 or age >65.",
+      "delayMs": 700
+    },
+    {
+      "type": "alert",
+      "severity": "advisory",
+      "title": "Polypharmacy contribution to orthostatic symptoms",
+      "text": "5 drugs affecting BP/glycaemia — likely contributor to reported morning dizziness.",
+      "mechanism": "Combined antihypertensive effect (Amlodipine + Captopril) with orthostatic challenge.",
+      "recommendation": "Non-pharmacological measures advised (slow rise, 30s count). Planned Captopril → Lisinopril switch if BP uncontrolled next visit.",
+      "reference": "Doctor stated conditional switch to Lisinopril 10 mg OD for adherence if BP remains elevated.",
+      "delayMs": 700
+    }
+  ],
+  "references": [
+    {
+      "title": "FDA Drug Safety Communication (2011)",
+      "detail": "Simvastatin 80 mg contraindicated with Amlodipine; limit to 20 mg."
+    },
+    {
+      "title": "ACE-I + Antiplatelet Interaction Review",
+      "detail": "Low-dose aspirin co-prescription with ACE-I — clinical significance and monitoring."
+    }
+  ]
+}
